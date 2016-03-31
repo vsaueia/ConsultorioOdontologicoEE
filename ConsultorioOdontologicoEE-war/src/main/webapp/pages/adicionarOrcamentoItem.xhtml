@@ -21,10 +21,9 @@
         <table>
             <tr>
                 <td>Serviço</td>
-                <td><h:selectOneMenu id="servico" value="#{orcamentoController.orcamentoItemSelecionado.servico}">
+                <td><h:selectOneMenu id="servico" value="#{orcamentoController.orcamentoItemSelecionado.servico}" converter="omnifaces.SelectItemsConverter">
                         <f:selectItems value="#{orcamentoController.servicos}" var="servico" itemDescription="#{servico.descricao}" 
                                        itemLabel="#{servico.descricao}" itemValue="#{servico}"/>
-                        <f:converter converterId="servicoConverter"/>
                     </h:selectOneMenu> </td>
             </tr>
             <tr>

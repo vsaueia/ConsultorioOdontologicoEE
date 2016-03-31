@@ -129,7 +129,7 @@
                         </tr>
                         <tr>
                             <td>Dentista</td>
-                            <td><h:selectOneMenu value="#{orcamentoController.orcamentoSelecionado.dentista}" converter="usuarioConverter">
+                            <td><h:selectOneMenu value="#{orcamentoController.orcamentoSelecionado.dentista}" converter="omnifaces.SelectItemsConverter">
                                     <f:selectItems var="dentista" value="#{orcamentoController.dentistas}" itemLabel="#{dentista.nome}" 
                                                    itemValue="#{dentista}" itemDescription="#{dentista.nome}"/>
                                 </h:selectOneMenu> 
