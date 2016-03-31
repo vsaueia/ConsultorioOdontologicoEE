@@ -6,7 +6,6 @@ import br.com.devmedia.consultorioee.util.FormatadoresUtil;
 import net.sf.jasperreports.engine.JRException;
 
 import javax.activation.DataHandler;
-import javax.annotation.Resource;
 import javax.ejb.*;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -36,7 +35,7 @@ public class MailService extends BasicService {
     @EJB
     private FinanceiroService financeiroService;
 
-    @Resource(mappedName = "mail/gmail")
+    //@Resource(mappedName = "mail/gmail")
     private Session mailSession;
 
     @EJB

@@ -8,9 +8,7 @@ import br.com.devmedia.consultorioee.service.repository.FinanceiroRepository;
 import net.sf.jasperreports.engine.*;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import javax.ejb.*;
-import javax.mail.Session;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
@@ -34,9 +32,6 @@ public class FinanceiroService extends BasicService {
     @PersistenceContext
     private EntityManager entityManager;
     private FinanceiroRepository financeiroRepository;
-
-    @Resource(mappedName = "mail/gmail")
-    private Session mailSession;
 
     @EJB
     private ClienteService clienteService;
