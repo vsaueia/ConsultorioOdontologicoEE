@@ -71,7 +71,7 @@ public class LoginController extends BasicController implements Serializable {
         usuarioLogado = usuarioService.findByLoginPassword(usuario, senha);
         if(usuarioLogado == null) {
             JsfUtils.addError(DEFAULT_MESSAGE);
-            return "login.faces";
+            return "/login.faces";
         } else {
             return "/pages/index.faces?faces-redirect=true";
         }
