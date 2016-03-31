@@ -25,14 +25,14 @@ import java.util.logging.Logger;
 @FacesConverter("servicoConverter")
 public class ServicoConverter implements Converter {
 
-    private final ServicosService servicoService = lookupServicoServiceBean();
+    private final ServicosService servicoService = lookupServicosServiceBean();
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null) {
             return null;
         }
-        return lookupServicoServiceBean().findByDescricaoExata(value.toString());
+        return lookupServicosServiceBean().findByDescricaoExata(value.toString());
     }
 
     @Override
@@ -43,14 +43,13 @@ public class ServicoConverter implements Converter {
         return ((Servico) value).getDescricao();
     }
 
-    private ServicosService lookupServicoServiceBean() {
+    private ServicosService lookupServicosServiceBean() {
         try {
             Context c = new InitialContext();
-            return (ServicosService) c.lookup("java:global/ConsultorioOdontologicoEE/ConsultorioOdontologicoEE-ejb/ServicosService!br.com.devmedia.consultorioee.service.ServicosService");
+            return (ServicosService) c.lookup("java:global/br.com.devmedia.consultorioee_ConsultorioOdontologicoEE-ear_ear_1.0-SNAPSHOT/br.com.devmedia.consultorioee_ConsultorioOdontologicoEE-ejb_ejb_1.0-SNAPSHOT/ServicosService!br.com.devmedia.consultorioee.service.ServicosService");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
-
 }
