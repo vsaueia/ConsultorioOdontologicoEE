@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="template.xhtml"
+        >
+
+    <ui:define name="pageTitle">
+        Clientes
+    </ui:define>
+
+    <ui:define name="content">
+        <h2>Novo cliente</h2>
+
+        <f:validateBean>
+            <table width="100%">
+                <tr>
+                    <td width="20%">Nome</td>
+                    <td width="80%"><h:inputText style="width: 100%" value="#{clienteController.clienteSelecionado.nome}"/></td>
+                </tr>
+
+                <tr>
+                    <td width="20%">Endereço</td>
+                    <td width="80%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.endereco}"/></td>
+                </tr>
+            </table>
+            <table width="100%">
+                <tr>
+                    <td width="20%">Data de nascimento</td>
+                    <td width="10%">
+                        <h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.dataNascimento}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:inputText>
+                    </td>
+                    <td width="10%">Estado</td>
+                    <td width="10%">
+                        <h:inputText style="width: 100%"  maxlength="2" value="#{clienteController.clienteSelecionado.estado}"/>
+                    </td>
+                    <td width="10%">Cidade</td>
+                    <td width="40%">
+                        <h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.cidade}"/>
+                    </td>
+                </tr>
+            </table>
+            <table width="100%">
+                <tr>
+                    <td width="20%">Celular</td>
+                    <td width="30%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.celular}"/></td>
+                    <td width="20%">Telefone</td>
+                    <td width="30%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.telefone}"/></td>
+                </tr>
+            </table>
+            <table width="100%">
+
+                <tr>
+                    <td width="20%">Complemento</td>
+                    <td width="80%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.complemento}"/></td>
+                </tr>
+
+                <tr>
+                    <td width="20%">Nome do Pai</td>
+                    <td width="80%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.nomePai}"/></td>
+                </tr>
+
+                <tr>
+                    <td width="20%">Nome da Mãe</td>
+                    <td width="80%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.nomeMae}"/></td>
+                </tr>
+
+                <tr>
+                    <td width="20%">Observações</td>
+                    <td width="80%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.observacao}"/></td>
+                </tr>
+
+            </table>
+            <br/>
+            <br/>
+            <h3>Informações Comerciais</h3>
+            <hr/>
+            <br/>
+            <table width="100%">
+
+                <tr>
+                    <td width="20%">Empresa</td>
+                    <td width="80%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.nomeEmpresa}"/></td>
+                </tr>
+
+                <tr>
+                    <td width="20%">Ocupação</td>
+                    <td width="80%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.ocupacao}"/></td>
+                </tr>
+
+                <tr>
+                    <td width="20%">Endereço</td>
+                    <td width="80%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.enderecoComercial}"/></td>
+                </tr>
+
+                <tr>
+                    <td width="20%">Observações</td>
+                    <td width="80%"><h:inputText style="width: 100%"  value="#{clienteController.clienteSelecionado.observacaoComercial}"/></td>
+                </tr>
+            </table>
+            <br/>
+            <br/>
+        </f:validateBean>
+
+        <ui:fragment rendered="#{clienteController.clienteSelecionado.id eq null}">
+            <h:commandButton action="#{clienteController.finalizarCadastro()}" value="Cadastrar"/>
+        </ui:fragment>    
+        <ui:fragment rendered="#{clienteController.clienteSelecionado.id ne null}">
+            <h:commandButton action="#{clienteController.finalizarEdicao()}" value="Salvar"/>
+        </ui:fragment>
+        &nbsp;       
+        <h:commandButton action="clientes.faces" value="Cancelar" immediate="true"/>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:fragment rendered="#{loginController.usuario ne null}">
+        <span style="float: right;margin-left: 40px;font-size: medium;color: darkcyan;">
+            Usuário Logado: #{loginController.usuarioLogado.nome} <a href="/ConsultorioOdontologicoEE-war/SairServlet">
+                 Sair<h:graphicImage value="/resources/images/logout.png"/></a>
+        </span>
+    </ui:fragment>    
+    <h:graphicImage value="/resources/images/logo.jpg" styleClass="logoApp"/>
+    <span style="float: none;font-weight: bolder;font-size: xx-large;">
+          Consultório Odontológico Enterprise Edition 7
+    </span>
+</ui:composition>
+

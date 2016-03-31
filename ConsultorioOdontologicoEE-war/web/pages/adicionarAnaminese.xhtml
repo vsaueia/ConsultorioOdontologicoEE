@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+        >
+
+    <ui:define name="titleOfPage">
+        Nova Anaminese para #{anamineseController.clienteSelecionado.nome}
+    </ui:define>
+
+    <ui:define name="content">
+        <script>
+            function enableDisable(component, nomeText) {
+                if (component.checked) {
+                    $('input[id=' + nomeText + ']').attr("disabled", true);
+                } else {
+                    $('input[id=' + nomeText + ']').attr("disabled", false);
+                }
+                return true;
+            }
+            $(document).ready(function () {
+                //$('input[type=text]').attr("disabled", true);
+            });
+        </script>
+
+        <h3>Nova Anaminese para #{anamineseController.clienteSelecionado.nome}</h3>
+        <table>
+            <tr>
+                <td>É fumante?</td>
+                <td><h:selectBooleanCheckbox value="#{anamineseController.anamineseSelecionada.fuma}"/></td>
+            </tr>
+            <tr>
+                <td>Pratica exercícios regularmente?</td>
+                <td><h:selectBooleanCheckbox value="#{anamineseController.anamineseSelecionada.praticaExercicio}"/></td>
+            </tr>
+            <tr>
+                <td>Possui doença hereditária?</td>
+                <td><h:selectBooleanCheckbox onchange="javascript:enableDisable(this, 'form:descricaoDoenca')" 
+                                             value="#{anamineseController.anamineseSelecionada.doencaHereditaria}"/>&nbsp;Qual? 
+                    <h:inputText id="descricaoDoenca" value="#{anamineseController.anamineseSelecionada.descricaoDoencaHereditaria}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Fez alguma operação recente?</td>
+                <td>
+                    <h:selectBooleanCheckbox value="#{anamineseController.anamineseSelecionada.operacaoRecente}"/>&nbsp;Qual? 
+                    <h:inputText id="descricaoOperacaoRecente" value="#{anamineseController.anamineseSelecionada.descricaoOperacaoRecente}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Utiliza medicação contínua?</td>
+                <td><h:selectBooleanCheckbox value="#{anamineseController.anamineseSelecionada.medicacaoContinua}"/>&nbsp;Qual? 
+                    <h:inputText id="descricaoMedicacao" value="#{anamineseController.anamineseSelecionada.descricaoMedicacaoContinua}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Possui alergia a algum medicamento?</td>
+                <td><h:selectBooleanCheckbox value="#{anamineseController.anamineseSelecionada.alergia}"/>&nbsp;Qual? 
+                    <h:inputText id="descricaoAlergia" value="#{anamineseController.anamineseSelecionada.descricaoAlergia}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Possui alguma DST?</td>
+                <td><h:selectBooleanCheckbox value="#{anamineseController.anamineseSelecionada.dst}"/>&nbsp;Qual? 
+                    <h:inputText id="descricaoDescricaoDST" value="#{anamineseController.anamineseSelecionada.descricaoDst}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Comentários</td>
+                <td><h:inputTextarea value="#{anamineseController.anamineseSelecionada.comentario}" rows="5" cols="60"/></td>
+            </tr>
+        </table>
+
+
+        <ui:fragment rendered="#{anamineseController.anamineseSelecionada.id eq null}">
+            <h:commandButton action="#{anamineseController.finalizarCadastro()}" value="Cadastrar"/>
+        </ui:fragment>    
+        <ui:fragment rendered="#{anamineseController.anamineseSelecionada.id ne null}">
+            <h:commandButton action="#{anamineseController.finalizarEdicao()}" value="Salvar"/>
+        </ui:fragment>
+
+        &nbsp; 
+        <h:commandButton action="atendimento.faces" value="Cancelar" immediate="true"/>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,87 @@
+.linhaPar {
+    background-color: white;
+}
+
+.linhaImpar{
+    background-color: #F2F5F9;
+}
+
+.msgErro {
+    color:red;
+    font-weight: bolder;
+}
+
+.logoApp {
+    width: 100px;
+}
+
+.myTable {
+    width: 100%;
+    text-align: center;
+    border-style: groove;
+    border-width: 1;
+    border-color: snow;
+    font-size: small;
+}
+
+#top {
+    position: relative;    
+    color: #036fab;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    position: relative;    
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+    font-size: x-small;
+    text-align: center;
+    color: gray;
+}
+
+#left {
+    float: left;    
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 5px;
+}
+
+.left_content {
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+.margin-5 {
+  margin: 5px;
+}
+

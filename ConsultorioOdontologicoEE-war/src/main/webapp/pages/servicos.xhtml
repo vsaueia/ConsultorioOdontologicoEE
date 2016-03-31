@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="pageTitle">
+        Serviços
+    </ui:define>
+
+    <ui:define name="content">
+        <h2>Controle de serviços</h2>
+        
+        <table>
+            <tr>
+                <td width="15%">Descrição: </td>
+                <td width="80%"><h:inputText style="width: 100%" value="#{servicosController.filtroDescricao}"/></td>
+                <td width="5%"><h:commandButton value="Buscar" action="#{servicosController.buscar()}"/></td>
+            </tr>
+        </table>
+        
+        <h:dataTable value="#{servicosController.servicosResult}" var="item" 
+                     styleClass="myTable" rowClasses="linhaPar, linhaImpar">
+            
+            <h:column rendered="#{loginController.usuarioLogado.administrador}">
+                <f:facet name="header">
+                    Ações
+                </f:facet>
+                <h:commandLink action="#{servicosController.editarServico()}" styleClass="margin-5" title="Editar serviço">
+                    <h:graphicImage value="/resources/images/edit.png"/>
+                    <f:setPropertyActionListener value="#{item}" target="#{servicosController.servicoSelecionado}"/>
+                </h:commandLink>                
+                <h:commandLink action="#{servicosController.removerServico()}" title="Remover serviço"
+                               onclick="return confirm('Tem certeza que deseja remover este serviço ?');">                               
+                    <h:graphicImage value="/resources/images/remove.png"/>
+                    <f:setPropertyActionListener value="#{item}" target="#{servicosController.servicoSelecionado}"/>
+                </h:commandLink>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Descrição
+                </f:facet>
+                #{item.descricao}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    Custo
+                </f:facet>
+                <h:outputText value="#{item.custo}">
+                    <f:convertNumber type="currency" currencySymbol="R$"/>
+                </h:outputText>
+            </h:column>
+        </h:dataTable>
+        
+        
+        <h:commandButton rendered="#{loginController.usuarioLogado.administrador}"
+                         action="#{servicosController.startAdicionarServico()}" value="Novo serviço"/>
+
+        
+    </ui:define>
+
+</ui:composition>

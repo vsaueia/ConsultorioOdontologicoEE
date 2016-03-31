@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="lista" type="java.util.List" required="true" />
+        <cc:attribute name="mensagemVazio" type="java.lang.String" default="Nenhum item encontrado" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:panelGroup rendered="#{orcamentoController.parcelasResult.size() eq 0}" layout="block">
+            #{cc.attrs.mensagemVazio}
+        </h:panelGroup>
+        <h:dataTable rowClasses="linhaPar,linhaImpar" styleClass="myTable" var="item" 
+                     value="#{cc.attrs.lista}" rendered="#{cc.attrs.lista.size() ne 0}">
+            <cc:insertChildren/>
+        </h:dataTable>
+    </cc:implementation>
+</html>

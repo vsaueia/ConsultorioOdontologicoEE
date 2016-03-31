@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="titleOfPage">
+        Novo Orçamento
+    </ui:define>
+
+    <ui:define name="content">
+        <script>
+            $(document).ready(function () {
+            });
+        </script>
+
+        <h4>Anaminese sendo utilizada :</h4>        
+        <table border="1" width="90%">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Fuma?</td>
+                            <td><h:selectBooleanCheckbox disabled="true" value="#{orcamentoController.orcamentoSelecionado.anaminese.fuma}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Pratica Exercícios regularmente?</td>
+                            <td><h:selectBooleanCheckbox disabled="true" value="#{orcamentoController.orcamentoSelecionado.anaminese.praticaExercicio}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Possui doença Hereditária?</td>
+                            <td>
+                                <h:selectBooleanCheckbox disabled="true" onchange="javascript:enableDisable(this, 'form:descricaoDoenca')" 
+                                                         value="#{orcamentoController.orcamentoSelecionado.anaminese.doencaHereditaria}"/>&nbsp;
+                                Qual? <h:inputText disabled="true" id="descricaoDoenca" 
+                                                   value="#{orcamentoController.orcamentoSelecionado.anaminese.descricaoDoencaHereditaria}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Fez alguma operação recente?</td>
+                            <td><h:selectBooleanCheckbox disabled="true"  value="#{orcamentoController.orcamentoSelecionado.anaminese.operacaoRecente}"/>
+                                &nbsp;Qual? <h:inputText disabled="true"  id="descricaoOperacaoRecente" 
+                                                         value="#{orcamentoController.orcamentoSelecionado.anaminese.descricaoOperacaoRecente}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Utiliza Medicação contínua ?</td>
+                            <td><h:selectBooleanCheckbox disabled="true" value="#{orcamentoController.orcamentoSelecionado.anaminese.medicacaoContinua}"/>
+                                &nbsp;Qual? <h:inputText disabled="true" id="descricaoMedicacao" 
+                                                         value="#{orcamentoController.orcamentoSelecionado.anaminese.descricaoMedicacaoContinua}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Possui alergia a algum medicamento?</td>
+                            <td><h:selectBooleanCheckbox disabled="true" value="#{orcamentoController.orcamentoSelecionado.anaminese.alergia}"/>
+                                &nbsp;Qual? <h:inputText disabled="true" id="descricaoAlergia" 
+                                                         value="#{orcamentoController.orcamentoSelecionado.anaminese.descricaoAlergia}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Possui alguma DST?</td>
+                            <td><h:selectBooleanCheckbox disabled="true" 
+                                                         value="#{orcamentoController.orcamentoSelecionado.anaminese.dst}"/>&nbsp;Qual? 
+                                <h:inputText disabled="true"  id="descricaoDescricaoDST" 
+                                             value="#{orcamentoController.orcamentoSelecionado.anaminese.descricaoDst}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Observações</td>
+                            <td><h:inputTextarea disabled="true" value="#{orcamentoController.orcamentoSelecionado.anaminese.comentario}"/></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Itens do Orçamento para #{orcamentoController.clienteSelecionado.nome}</h3>
+
+        <h:dataTable rowClasses="linhaPar,linhaImpar" styleClass="myTable" style="width: 90%" var="item" 
+                     value="#{orcamentoController.orcamentoSelecionado.orcamentoItens}" 
+                     rendered="#{orcamentoController.orcamentoSelecionado.orcamentoItens.size() ne 0}">
+
+            <h:column rendered="#{loginController.usuarioLogado.administrador}">
+                <f:facet name="header">
+                    Ações
+                </f:facet>
+
+                <h:commandLink immediate="true" title="Remover Item do Orçamento" action="#{orcamentoController.removerItem()}" 
+                               onclick="return confirm('Tem certeza que deseja remover este item do orçamento?');" >
+                    <h:graphicImage value="/resources/images/remove.png"/>
+                    <f:setPropertyActionListener value="#{item}" target="#{orcamentoController.orcamentoItemSelecionado}"/>
+                </h:commandLink>   
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Serviço
+                </f:facet>
+                #{item.servico.descricao}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Quantidade
+                </f:facet>
+                #{item.quantidade}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Valor Total
+                </f:facet>
+                <h:outputText value="#{item.total}"><f:convertNumber type="currency"/></h:outputText>
+            </h:column>            
+        </h:dataTable>
+        <br/>
+        <h:commandButton immediate="true" action="#{orcamentoController.iniciarCadastroOrcamentoItem()}" value="Novo item ao orçamento"/>
+        <br/>
+        <br/>
+        <table border="1"  width="90%">
+            <tr>
+                <td>
+                    <table> 
+                        <tr>
+                            <td>Total</td>
+                            <td><h:outputText value="#{orcamentoController.orcamentoSelecionado.total}">
+                                    <f:convertNumber type="currency"/></h:outputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Dentista</td>
+                            <td><h:selectOneMenu value="#{orcamentoController.orcamentoSelecionado.dentista}" converter="usuarioConverter">
+                                    <f:selectItems var="dentista" value="#{orcamentoController.dentistas}" itemLabel="#{dentista.nome}" 
+                                                   itemValue="#{dentista}" itemDescription="#{dentista.nome}"/>
+                                </h:selectOneMenu> 
+                            </td>
+                            <td>Forma de pagamento</td>
+                            <td><h:selectOneMenu value="#{orcamentoController.orcamentoSelecionado.tipoPagamento}">
+                                    <f:selectItems var="tipo" value="#{orcamentoController.tiposPagamento}" 
+                                                   itemDescription="#{tipo.descricao}" itemLabel="#{tipo.descricao}" itemValue="#{tipo}"/> 
+                                </h:selectOneMenu></td>
+                            <td>Prestações</td>
+                            <td><h:inputText style="width: 40px" value="#{orcamentoController.orcamentoSelecionado.numeroParcelas}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Observações</td>
+                            <td colspan="5"><h:inputTextarea  value="#{orcamentoController.orcamentoSelecionado.observacao}"/></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <br/>
+        <ui:fragment rendered="#{orcamentoController.orcamentoSelecionado.id eq null}">
+            <h:commandButton action="#{orcamentoController.finalizarCadastroOrcamento()}" value="Cadastrar orçamento"/> 
+        </ui:fragment>    
+        <ui:fragment rendered="#{orcamentoController.orcamentoSelecionado.id ne null}">
+            <h:commandButton action="#{orcamentoController.finalizarEdicao()}" value="Salvar"/> 
+        </ui:fragment>
+
+        &nbsp; 
+        <h:commandButton action="atendimento.faces" value="Cancelar" immediate="true"/>
+    </ui:define>
+
+</ui:composition>
