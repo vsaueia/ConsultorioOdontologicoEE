@@ -16,6 +16,8 @@
  */
 package br.com.devmedia.consultorioee.model;
 
+import br.com.devmedia.consultorioee.validator.UnicidadeServico;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -38,6 +40,7 @@ import java.util.List;
     @NamedQuery(name = "Servico.countServicos", query = "SELECT count(s) FROM Servico s"),
     @NamedQuery(name = "Servico.findByDescricaoExata", query = "SELECT s FROM Servico s WHERE upper(s.descricao) = upper(:descricao)")
 })
+@UnicidadeServico
 public class Servico implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -115,7 +115,7 @@ public class FinanceiroService extends BasicService {
         financeiroRepository.deleteParcelas(orcamento);
     }
 
-    public byte[] gerarBoleto(Parcela parcela) throws JRException, JRException {
+    public byte[] gerarBoleto(Parcela parcela) throws JRException {
         String codigoBarras = "9126731921927319287312973";
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("parcela", parcela);
