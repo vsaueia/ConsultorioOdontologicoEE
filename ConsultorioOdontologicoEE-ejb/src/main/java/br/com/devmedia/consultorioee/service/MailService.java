@@ -6,6 +6,7 @@ import br.com.devmedia.consultorioee.util.FormatadoresUtil;
 import net.sf.jasperreports.engine.JRException;
 
 import javax.activation.DataHandler;
+import javax.annotation.Resource;
 import javax.ejb.*;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -35,13 +36,13 @@ public class MailService extends BasicService {
     @EJB
     private FinanceiroService financeiroService;
 
-    //@Resource(mappedName = "mail/gmail")
+    @Resource(mappedName = "mail/gmail")
     private Session mailSession;
 
     @EJB
     private ClienteService clienteService;
 
-    //@Schedule(hour = "*", minute = "43, 44", persistent = false)
+    @Schedule(hour = "*", minute = "28, 29", persistent = false)
     public void enviaBoletosPorEmail() throws JRException, IOException {
         System.out.println("Starting enviaBoletosPorEmail()");
         List<Cliente> clientes = clienteService.findByNome("%");
