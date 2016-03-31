@@ -42,7 +42,7 @@ public class MailService extends BasicService {
     @EJB
     private ClienteService clienteService;
 
-    @Schedule(hour = "*", minute = "43, 44", persistent = false)
+    //@Schedule(hour = "*", minute = "43, 44", persistent = false)
     public void enviaBoletosPorEmail() throws JRException, IOException {
         System.out.println("Starting enviaBoletosPorEmail()");
         List<Cliente> clientes = clienteService.findByNome("%");

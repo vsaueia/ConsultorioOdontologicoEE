@@ -46,7 +46,7 @@ public class UsuarioConverter implements Converter {
     private UsuarioService lookupUsuarioServiceBean() {
         try {
             Context c = new InitialContext();
-            return (UsuarioService) c.lookup("java:global/br.com.devmedia.consultorioee_ConsultorioOdontologicoEE-ear_ear_1.0-SNAPSHOT/br.com.devmedia.consultorioee_ConsultorioOdontologicoEE-ejb_ejb_1.0-SNAPSHOT/UsuarioService!br.com.devmedia.consultorioee.service.UsuarioService");
+            return (UsuarioService) c.lookup("java:global/ConsultorioOdontologicoEE/ConsultorioOdontologicoEE-ejb/UsuarioService!br.com.devmedia.consultorioee.service.UsuarioService");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
