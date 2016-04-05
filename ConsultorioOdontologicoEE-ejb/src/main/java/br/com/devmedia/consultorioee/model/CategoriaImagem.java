@@ -8,7 +8,9 @@ import java.util.List;
 @Entity
 @Table(name = "categoria_imagem")
 @NamedQueries({
-    @NamedQuery(name = "Imagem.findAll", query = "SELECT i FROM Imagem i")
+    @NamedQuery(name = "CategoriaImagem.findAll", query = "SELECT c FROM CategoriaImagem c"),
+    @NamedQuery(name = "CategoriaImagem.findByDescricao", query = "Select c from CategoriaImagem  c where upper(c.descricao) like upper(:descricao)"),
+    @NamedQuery(name = "CategoriaImagem.countAll", query = "Select count(c) from CategoriaImagem c")
 })
 public class CategoriaImagem implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -18,8 +20,8 @@ public class CategoriaImagem implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
     @Basic(optional = false)
-    @Column(name = "nome", nullable = false, length = 255)
-    private String nome;
+    @Column(name = "descricao", nullable = false, length = 255)
+    private String descricao;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaImagem")
     private List<Imagem> imagens = new ArrayList<>();
 
@@ -31,12 +33,12 @@ public class CategoriaImagem implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String nome) {
+        this.descricao = nome;
     }
 
     public List<Imagem> getImagens() {
