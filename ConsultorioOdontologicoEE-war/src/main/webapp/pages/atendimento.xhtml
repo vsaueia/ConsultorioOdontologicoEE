@@ -33,11 +33,16 @@
                     <h:graphicImage value="/resources/images/edit.png"/>
                     <f:setPropertyActionListener value="#{item}" target="#{orcamentoController.orcamentoSelecionado}"/>
                 </h:commandLink>&nbsp;
-                <h:commandLink title="Remover Orçamento" action="#{orcamentoController.removerOrcamento()}" 
+                <h:commandLink title="Remover Orçamento" action="#{orcamentoController.removerOrcamento()}"
+                               styleClass="margin-5"
                                onclick="return confirm('Tem certeza que deseja remover este orçamento ?');" >
                     <h:graphicImage value="/resources/images/remove.png"/>
                     <f:setPropertyActionListener value="#{item}" target="#{orcamentoController.orcamentoSelecionado}"/>
-                </h:commandLink>   
+                </h:commandLink>
+                <h:commandLink title="Visualizar imagens" action="#{orcamentoController.visualizarImagens()}">
+                    <h:graphicImage value="/resources/images/photo.png"/>
+                    <f:setPropertyActionListener value="#{item}" target="#{orcamentoController.orcamentoSelecionado}"/>
+                </h:commandLink>
             </h:column>
 
             <h:column>
