@@ -30,16 +30,16 @@ public class ImagemService extends BasicService {
         return imagemRepository.findById(id);
     }
 
-    public Imagem updateImagem(Imagem servico) {
-        return imagemRepository.updateImagem(servico);
+    public Imagem updateImagem(Imagem imagem) {
+        return imagemRepository.updateImagem(imagem);
     }
 
-    public void removeImagem(Imagem servico){
-        imagemRepository.removeImagem(servico);
+    public void removeImagem(Imagem imagem){
+        imagemRepository.removeImagem(imagem);
     }
 
-    public Imagem addImagem(Imagem servico) {
-        return imagemRepository.addImagem(servico);
+    public Imagem addImagem(Imagem imagem) {
+        return imagemRepository.addImagem(imagem);
     }
 
     public List<Imagem> findAll() {

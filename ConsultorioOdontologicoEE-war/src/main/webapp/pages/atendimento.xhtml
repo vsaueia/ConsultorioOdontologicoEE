@@ -39,9 +39,9 @@
                     <h:graphicImage value="/resources/images/remove.png"/>
                     <f:setPropertyActionListener value="#{item}" target="#{orcamentoController.orcamentoSelecionado}"/>
                 </h:commandLink>
-                <h:commandLink title="Visualizar imagens" action="#{orcamentoController.visualizarImagens()}">
+                <h:commandLink title="Visualizar imagens" action="#{imagemController.visualizarImagens()}">
                     <h:graphicImage value="/resources/images/photo.png"/>
-                    <f:setPropertyActionListener value="#{item}" target="#{orcamentoController.orcamentoSelecionado}"/>
+                    <f:setPropertyActionListener value="#{item}" target="#{imagemController.orcamentoSelecionado}"/>
                 </h:commandLink>
             </h:column>
 
