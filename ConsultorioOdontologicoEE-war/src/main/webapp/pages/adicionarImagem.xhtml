@@ -2,7 +2,7 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./base.xhtml"
+                template="./template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -20,7 +20,8 @@
                 </tr>
                 <tr>
                     <td>Categoria</td>
-                    <td><h:selectOneMenu value="#{imagemController.imagemSelecionada.categoriaImagem}">
+                    <td><h:selectOneMenu value="#{imagemController.imagemSelecionada.categoriaImagem}"
+                            converter="omnifaces.SelectItemsConverter">
                         <f:selectItems value="#{imagemController.categoriasDeImagem}" var="item"
                                        itemDescription="#{item.descricao}" itemLabel="#{item.descricao}" itemValue="#{item}"/>
                     </h:selectOneMenu>
@@ -28,7 +29,7 @@
                 </tr>
                 <tr>
                     <td>Arquivo</td>
-                    <td><h:inputFile id="arquivo" value="#{imagemController.arquivoImagem}"/></td>
+                    <td><h:inputFile id="arquivo" value="#{imagemController.arquivoImagem}" required="true"/></td>
                 </tr>
             </table>
             <h:commandButton action="#{imagemController.finalizarCadastroDeImagem()}" value="Cadastrar"/> &nbsp;

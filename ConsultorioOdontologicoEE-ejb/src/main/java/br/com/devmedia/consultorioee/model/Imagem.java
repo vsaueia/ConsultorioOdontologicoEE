@@ -34,11 +34,11 @@ public class Imagem implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @XmlTransient
     private LocalDateTime dataInclusao;
-    @JoinColumn(name = "categoria", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "categoria_imagem_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     @XmlTransient
     private CategoriaImagem categoriaImagem;
-    @JoinColumn(name = "orcamento", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "orcamento_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     @XmlTransient
     private Orcamento orcamento;
@@ -56,6 +56,11 @@ public class Imagem implements Serializable {
         this.dataInclusao = dataInclusao;
         this.categoriaImagem = categoriaImagem;
         this.orcamento = orcamento;
+    }
+
+    @PrePersist
+    public void inicializarDataInclusao() {
+        this.dataInclusao = LocalDateTime.now();
     }
 
     public Long getId() {
