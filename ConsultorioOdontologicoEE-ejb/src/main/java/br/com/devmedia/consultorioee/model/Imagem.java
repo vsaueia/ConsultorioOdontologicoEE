@@ -14,7 +14,11 @@ import java.time.LocalDateTime;
 @NamedQueries({
         @NamedQuery(name = "Imagem.findAll", query = "SELECT i FROM Imagem i"),
         @NamedQuery(name = "Imagem.findById", query = "SELECT i FROM Imagem i WHERE i.id = :id"),
-        @NamedQuery(name = "Imagem.findByDescricao", query = "SELECT i FROM Imagem i WHERE i.descricao = :descricao")})
+        @NamedQuery(name = "Imagem.findByDescricao", query = "SELECT i FROM Imagem i WHERE i.descricao = :descricao"),
+        @NamedQuery(name = "Imagem.findByOrcamento", query = "" +
+                " select new br.com.devmedia.consultorioee.model.Imagem(i.descricao, i.dataInclusao, i.categoriaImagem, i.orcamento) " +
+                " from Imagem  i where i.orcamento = :orcamento")
+})
 public class Imagem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +42,21 @@ public class Imagem implements Serializable {
     @ManyToOne(optional = false)
     @XmlTransient
     private Orcamento orcamento;
-    @Basic(optional = false)
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "imagem", nullable = false)
     @Lob
     @XmlTransient
     private byte[] imagem;
+
+    public Imagem() {
+    }
+
+    public Imagem(String descricao, LocalDateTime dataInclusao, CategoriaImagem categoriaImagem, Orcamento orcamento) {
+        this.descricao = descricao;
+        this.dataInclusao = dataInclusao;
+        this.categoriaImagem = categoriaImagem;
+        this.orcamento = orcamento;
+    }
 
     public Long getId() {
         return id;
