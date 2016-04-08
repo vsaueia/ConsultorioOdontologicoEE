@@ -1,7 +1,6 @@
 package br.com.devmedia.consultorioee.service;
 
 import br.com.devmedia.consultorioee.model.Imagem;
-import br.com.devmedia.consultorioee.model.Orcamento;
 import br.com.devmedia.consultorioee.service.repository.ImagemRepository;
 
 import javax.annotation.PostConstruct;
@@ -46,7 +45,7 @@ public class ImagemService extends BasicService {
         return imagemRepository.findAll();
     }
 
-    public List<Imagem> findByOrcamento(Orcamento orcamento) {
-        return imagemRepository.findByOrcamento(orcamento);
+    public List<Imagem> findByOrcamentoIdECategoriaId(Long orcamentoId, Long categoriaId) {
+        return imagemRepository.findByOrcamentoIdECategoriaId(orcamentoId, categoriaId);
     }
 }

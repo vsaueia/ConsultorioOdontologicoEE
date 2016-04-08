@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
         @NamedQuery(name = "Imagem.findAll", query = "SELECT i FROM Imagem i"),
         @NamedQuery(name = "Imagem.findById", query = "SELECT i FROM Imagem i WHERE i.id = :id"),
         @NamedQuery(name = "Imagem.findByDescricao", query = "SELECT i FROM Imagem i WHERE i.descricao = :descricao"),
-        @NamedQuery(name = "Imagem.findByOrcamento", query = "" +
-                " select new br.com.devmedia.consultorioee.model.Imagem(i.descricao, i.dataInclusao, i.categoriaImagem, i.orcamento) " +
-                " from Imagem  i where i.orcamento = :orcamento")
+        @NamedQuery(name = "Imagem.findByOrcamentoIdECategoriaId", query = "" +
+                " select new br.com.devmedia.consultorioee.model.Imagem(i.id, i.descricao) " +
+                " from Imagem  i where i.orcamento.id = :orcamentoId and i.categoriaImagem.id = :categoriaId")
 })
 public class Imagem implements Serializable {
     @Id
@@ -51,11 +51,9 @@ public class Imagem implements Serializable {
     public Imagem() {
     }
 
-    public Imagem(String descricao, LocalDateTime dataInclusao, CategoriaImagem categoriaImagem, Orcamento orcamento) {
+    public Imagem(Long id, String descricao) {
+        this.id = id;
         this.descricao = descricao;
-        this.dataInclusao = dataInclusao;
-        this.categoriaImagem = categoriaImagem;
-        this.orcamento = orcamento;
     }
 
     @PrePersist

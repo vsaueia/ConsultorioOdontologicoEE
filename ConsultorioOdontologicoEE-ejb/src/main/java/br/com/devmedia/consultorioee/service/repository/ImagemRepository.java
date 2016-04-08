@@ -1,7 +1,6 @@
 package br.com.devmedia.consultorioee.service.repository;
 
 import br.com.devmedia.consultorioee.model.Imagem;
-import br.com.devmedia.consultorioee.model.Orcamento;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -33,9 +32,10 @@ public class ImagemRepository extends BasicRepository {
                 .getResultList();
     }
 
-    public List<Imagem> findByOrcamento(Orcamento orcamento) {
-        return getEntityManager().createNamedQuery("Imagem.findByOrcamento", Imagem.class)
-                .setParameter("orcamento", orcamento)
+    public List<Imagem> findByOrcamentoIdECategoriaId(Long orcamentoId, Long categoriaId) {
+        return getEntityManager().createNamedQuery("Imagem.findByOrcamentoIdECategoriaId", Imagem.class)
+                .setParameter("orcamentoId", orcamentoId)
+                .setParameter("categoriaId", categoriaId)
                 .getResultList();
     }
 }
